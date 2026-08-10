@@ -1,0 +1,30 @@
+name: container-smoke
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        cell: [nanobot, redbot, laravel]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      - name: Build ${{ matrix.cell }}
+        uses: docker/build-push-action@v6
+        with:
+          context: ${{ matrix.cell }}
+          push: false
+          load: false
+          cache-from: type=gha,scope=${{ matrix.cell }}
+          cache-to: type=gha,mode=max,scope=${{ matrix.cell }}
+
