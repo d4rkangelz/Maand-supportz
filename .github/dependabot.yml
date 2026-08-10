@@ -1,0 +1,14 @@
+version: 2
+updates:
+  - package-ecosystem: docker
+    directory: /nanobot
+    schedule: {interval: monthly}
+  - package-ecosystem: docker
+    directory: /redbot
+    schedule: {interval: monthly}
+  - package-ecosystem: docker
+    directory: /laravel
+    schedule: {interval: monthly}
+  - package-ecosystem: github-actions
+    directory: /
+    schedule: {interval: monthly}
