@@ -17,7 +17,6 @@ COPY entrypoint.py supervisor.py /usr/local/lib/railway-redbot/
 RUN chmod 0755 /usr/local/lib/railway-redbot/entrypoint.py \
     && mkdir -p /data
 
-VOLUME ["/data"]
 EXPOSE 8080
 
 ENTRYPOINT ["python", "/usr/local/lib/railway-redbot/entrypoint.py"]
